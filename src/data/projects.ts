@@ -8,27 +8,32 @@ export type Project = {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
-  category: "Web" | "Mobile" | "FiveM" | "Backend" | "Open Source";
+  category: "Web" | "Mobile" | "Embedded" | "Hackathon" | "Backend" | "Open Source";
 };
 
 export const projectsData: Project[] = ([
   {
     id: "1",
-    title: "[YOUR PROJECT TITLE 1]",
-    description: "[YOUR PROJECT DESCRIPTION 1]",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800", // Placeholder
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-    category: "Web",
+    title: "CDG Hackathon 2025 — 1st Runner-up",
+    description: "Built a solution with my team at CDG Hackathon 2025 x 3 Phra Chom Klao (CDG House, Bangkok) and won 1st Runner-up.",
+    image: "/certificates/9.webp",
+    technologies: ["PHP", "MySQL", "API"],
+    category: "Hackathon",
   },
   {
     id: "2",
-    title: "[YOUR PROJECT TITLE 2]",
-    description: "[YOUR PROJECT DESCRIPTION 2]",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", // Placeholder
-    technologies: ["Node.js", "Express", "MongoDB"],
-    githubUrl: "https://github.com",
-    category: "Backend",
+    title: "Lung Trainer for Breathing",
+    description: "Co-developed a breathing-exercise device with Boromarajonani College of Nursing, Nakhon Si Thammarat, as part of a Nursing Innovation course (September 2022).",
+    image: "/certificates/6.webp",
+    technologies: ["C", "C++"],
+    category: "Embedded",
+  },
+  {
+    id: "3",
+    title: "Leg Muscle Rehabilitation Device",
+    description: "A physical-therapy device for weakened leg muscles. Won 1st Runner-up (Gold) in the quality-of-life category of the Nakhon Si Thammarat provincial vocational innovation contest (2021).",
+    image: "/certificates/8.webp",
+    technologies: ["Raspberry Pi", "C#", "C++"],
+    category: "Embedded",
   },
 ] satisfies Project[]).filter((p) => isFilled(p.title)); // entries still using "[...]" placeholders are hidden

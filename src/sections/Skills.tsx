@@ -5,7 +5,7 @@ import { SectionTitle } from '../components/ui/SectionTitle';
 
 export const Skills = () => {
   // Group skills by category
-  const categories: SkillCategory[] = ["Frontend", "Backend", "Database", "Programming Languages", "Tools", "Frameworks"];
+  const categories: SkillCategory[] = ["Programming Languages", "Hardware", "Frontend", "Backend", "Database", "Tools", "Frameworks"];
   
   const groupedSkills = categories.reduce((acc, cat) => {
     const skillsInCategory = skillsData.filter(s => s.category === cat);
@@ -41,17 +41,21 @@ export const Skills = () => {
                         <skill.icon size={32} />
                       </div>
                       <h4 className="font-semibold text-white mb-1">{skill.name}</h4>
-                      <p className="text-sm text-gray-400 mb-2">{skill.level}</p>
-                      <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
-                        <div 
-                          className="bg-gradient-to-r from-primary to-accent h-full rounded-full" 
-                          style={{ 
-                            width: skill.level === 'Beginner' ? '25%' : 
-                                   skill.level === 'Intermediate' ? '50%' : 
-                                   skill.level === 'Advanced' ? '75%' : '100%' 
-                          }}
-                        />
-                      </div>
+                      {skill.level && (
+                        <>
+                          <p className="text-sm text-gray-400 mb-2">{skill.level}</p>
+                          <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-primary to-accent h-full rounded-full"
+                              style={{
+                                width: skill.level === 'Beginner' ? '25%' :
+                                       skill.level === 'Intermediate' ? '50%' :
+                                       skill.level === 'Advanced' ? '75%' : '100%'
+                              }}
+                            />
+                          </div>
+                        </>
+                      )}
                     </div>
                   </FadeIn>
                 ))}
