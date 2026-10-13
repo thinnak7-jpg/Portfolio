@@ -1,3 +1,5 @@
+import { isFilled } from '../utils/content';
+
 export type Project = {
   id: string;
   title: string;
@@ -9,7 +11,7 @@ export type Project = {
   category: "Web" | "Mobile" | "FiveM" | "Backend" | "Open Source";
 };
 
-export const projectsData: Project[] = [
+export const projectsData: Project[] = ([
   {
     id: "1",
     title: "[YOUR PROJECT TITLE 1]",
@@ -29,4 +31,4 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com",
     category: "Backend",
   },
-];
+] satisfies Project[]).filter((p) => isFilled(p.title)); // entries still using "[...]" placeholders are hidden

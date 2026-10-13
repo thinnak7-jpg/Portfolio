@@ -10,7 +10,8 @@ export const Layout = () => {
   return (
     <>
       <PageLoader />
-      <div className="min-h-screen flex flex-col relative selection:bg-primary/30 selection:text-white">
+      {/* overflow-x-clip: slide-in animations start off-screen and would otherwise cause sideways scroll on phones */}
+      <div className="min-h-screen flex flex-col relative overflow-x-clip selection:bg-primary/30 selection:text-white">
         <ScrollProgress />
         <CustomCursor />
         <Navbar />

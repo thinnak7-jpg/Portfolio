@@ -2,6 +2,7 @@ import React from 'react';
 import { educationData } from '../data/experience'; // Combined in experience.ts
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { FadeIn } from '../components/animations/FadeIn';
+import { ComingSoon } from '../components/ui/ComingSoon';
 import { FaGraduationCap } from 'react-icons/fa';
 
 export const Education = () => {
@@ -13,6 +14,7 @@ export const Education = () => {
           subtitle="My academic background and qualifications."
         />
 
+        {educationData.length === 0 && <ComingSoon message="Education details coming soon." />}
         <div className="flex flex-col gap-8">
           {educationData.map((edu, index) => (
             <FadeIn key={edu.id} delay={0.2 * index} direction="up">

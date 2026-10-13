@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { projectsData } from '../data/projects';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { FadeIn } from '../components/animations/FadeIn';
+import { ComingSoon } from '../components/ui/ComingSoon';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -23,6 +24,7 @@ export const Projects = () => {
           subtitle="Some of my recent work and personal projects."
         />
 
+        {projectsData.length === 0 ? <ComingSoon message="Projects coming soon." /> : <>
         {/* Filter Buttons */}
         <FadeIn delay={0.2} direction="up" className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((cat) => (
@@ -100,7 +102,7 @@ export const Projects = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-
+        </>}
       </div>
     </section>
   );

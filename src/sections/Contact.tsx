@@ -5,37 +5,44 @@ import { SectionTitle } from '../components/ui/SectionTitle';
 import { FadeIn } from '../components/animations/FadeIn';
 import { Button } from '../components/ui/Button';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { isFilled } from '../utils/content';
+
+// Set these in Vercel → Project → Settings → Environment Variables to send through EmailJS.
+// Without them the form opens the visitor's email app with the message pre-filled.
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+const emailjsConfigured = !!(EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY);
 
 export const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'mailto' | 'error'>('idle');
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.current) return;
 
+    if (!emailjsConfigured) {
+      const data = new FormData(form.current);
+      const subject = String(data.get('subject') ?? '');
+      const body = `${data.get('message') ?? ''}\n\n— ${data.get('user_name') ?? ''} (${data.get('user_email') ?? ''})`;
+      window.location.href = `${profileData.socials.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setStatus('mailto');
+      return;
+    }
+
     setIsSubmitting(true);
     setStatus('idle');
 
-    // PLACEHOLDER: Replace with actual Service ID, Template ID, and Public Key from EmailJS
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
-      .then((result) => {
-          console.log(result.text);
+    emailjs.sendForm(EMAILJS_SERVICE_ID!, EMAILJS_TEMPLATE_ID!, form.current, EMAILJS_PUBLIC_KEY!)
+      .then(() => {
           setStatus('success');
           form.current?.reset();
-      }, (error) => {
-          console.log(error.text);
+      }, () => {
           setStatus('error');
       })
-      .finally(() => {
-          setIsSubmitting(false);
-          // For demo purposes, we will fake a success if keys are placeholders
-          if (form.current?.innerHTML.includes('YOUR_SERVICE_ID')) {
-            setStatus('success');
-            form.current?.reset();
-          }
-      });
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -47,27 +54,31 @@ export const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           
-          {/* Contact Info & Map Placeholder */}
+          {/* Contact Info */}
           <FadeIn direction="right" delay={0.2} className="flex flex-col gap-8">
             <div className="glass p-8 rounded-3xl">
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
-                    <FaMapMarkerAlt size={20} />
+                {isFilled(profileData.contact.location) && (
+                  <div className="flex items-center gap-4 text-gray-300">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <FaMapMarkerAlt size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Location</p>
+                      <p className="font-medium text-white">{profileData.contact.location}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Location</p>
-                    <p className="font-medium text-white">{profileData.contact.location}</p>
-                  </div>
-                </div>
+                )}
                 <div className="flex items-center gap-4 text-gray-300">
                   <div className="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary shrink-0">
                     <FaPhoneAlt size={20} />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Phone</p>
-                    <p className="font-medium text-white">{profileData.contact.phone}</p>
+                    <a href={`tel:${profileData.contact.phone}`} className="font-medium text-white hover:text-secondary transition-colors">
+                      {profileData.contact.phone}
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-gray-300">
@@ -82,18 +93,6 @@ export const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Map Placeholder */}
-            <div className="w-full h-64 rounded-3xl overflow-hidden glass relative group">
-              <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                <span className="text-white font-medium bg-black/50 px-4 py-2 rounded-full">Open in Google Maps</span>
-              </div>
-              <img 
-                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=800" 
-                alt="Map Location" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-              />
             </div>
           </FadeIn>
 
@@ -153,6 +152,12 @@ export const Contact = () => {
 
                 {status === 'success' && (
                   <p className="text-green-400 text-center text-sm">Message sent successfully!</p>
+                )}
+                {status === 'mailto' && (
+                  <p className="text-gray-300 text-center text-sm">
+                    Your email app should open with the message ready to send. If it doesn't, email me at{' '}
+                    <a href={profileData.socials.email} className="text-accent underline">{profileData.socials.email.replace('mailto:', '')}</a>.
+                  </p>
                 )}
                 {status === 'error' && (
                   <p className="text-red-400 text-center text-sm">Oops! Something went wrong. Please try again.</p>

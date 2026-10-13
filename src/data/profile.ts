@@ -1,3 +1,4 @@
+// Fields still set to "[...]" placeholders are hidden on the site (see utils/content.ts)
 export const profileData = {
   name: "Thinnakorn Rattana",
   role: "Student | ENET C", // e.g., "Frontend Developer & UI/UX Designer"
@@ -12,7 +13,7 @@ export const profileData = {
   about: {
     bio: "[YOUR FULL BIOGRAPHY GOES HERE]",
     goals: "[YOUR GOALS GO HERE]",
-    interests: ["Design", "Open Source", "Gaming", "Photography"], // Replace with yours
+    interests: [] as string[], // e.g. ["Embedded Systems", "IoT", "Robotics"] — hidden while empty
   },
   contact: {
     phone: "0961175559",

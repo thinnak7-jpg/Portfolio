@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { activitiesData, Activity } from '../data/gallery';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { FadeIn } from '../components/animations/FadeIn';
+import { ComingSoon } from '../components/ui/ComingSoon';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
 import Lightbox from "yet-another-react-lightbox";
@@ -35,7 +36,10 @@ export const Gallery = () => {
           subtitle="A visual journey through my experiences, events, and behind-the-scenes moments."
         />
 
+        {activitiesData.length === 0 && <ComingSoon message="Activity photos coming soon." />}
+
         {/* Filters */}
+        {activitiesData.length > 0 && (
         <FadeIn delay={0.2} direction="up" className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) => (
             <button
@@ -51,6 +55,7 @@ export const Gallery = () => {
             </button>
           ))}
         </FadeIn>
+        )}
 
         {/* Masonry Grid via Tailwind CSS Columns for Cover Images */}
         <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">

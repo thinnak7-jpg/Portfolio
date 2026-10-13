@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { profileData } from '../../data/profile';
+import { isFilled } from '../../utils/content';
 import { FaGithub, FaFacebook, FaArrowUp } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
@@ -58,7 +59,7 @@ export const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-6">Contact</h3>
             <ul className="flex flex-col gap-3 text-gray-400">
-              <li>{profileData.contact.location}</li>
+              {isFilled(profileData.contact.location) && <li>{profileData.contact.location}</li>}
               <li>{profileData.contact.phone}</li>
               <li>{profileData.socials.email.replace('mailto:', '')}</li>
             </ul>

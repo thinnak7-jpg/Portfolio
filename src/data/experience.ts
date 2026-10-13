@@ -1,3 +1,6 @@
+import { isFilled } from '../utils/content';
+
+// Entries still using "[...]" placeholders are hidden from the site
 export type Experience = {
   id: string;
   company: string;
@@ -20,7 +23,7 @@ export const experienceData: Experience[] = [
     ],
     technologies: ["Tech 1", "Tech 2"],
   },
-];
+].filter((e) => isFilled(e.company) && isFilled(e.position));
 
 export type Education = {
   id: string;
@@ -43,7 +46,7 @@ export const educationData: Education[] = [
     gpa: "[YOUR GPA]",
     courses: ["Course 1", "Course 2"],
   }
-];
+].filter((e) => isFilled(e.school) && isFilled(e.degree));
 
 export type Achievement = {
   id: string;
@@ -61,4 +64,4 @@ export const achievementsData: Achievement[] = [
     date: "[DATE]",
     category: "Competition",
   }
-];
+].filter((a) => isFilled(a.title));

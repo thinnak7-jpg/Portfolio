@@ -5,6 +5,7 @@ import { Button } from '../components/ui/Button';
 import { ParticleBackground } from '../components/animations/ParticleBackground';
 import { FadeIn } from '../components/animations/FadeIn';
 import { Typewriter } from '../components/animations/Typewriter';
+import { isFilled } from '../utils/content';
 
 export const Hero = () => {
   return (
@@ -49,12 +50,14 @@ export const Hero = () => {
                 >
                   View Projects
                 </Button>
-                <Button 
-                  variant="outline"
-                  onClick={() => window.open(profileData.resumeUrl, '_blank')}
-                >
-                  Download Resume
-                </Button>
+                {isFilled(profileData.resumeUrl) && (
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open(profileData.resumeUrl, '_blank')}
+                  >
+                    Download Resume
+                  </Button>
+                )}
                 <Button 
                   variant="glass"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

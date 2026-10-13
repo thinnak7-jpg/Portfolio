@@ -2,6 +2,7 @@ import React from 'react';
 import { profileData } from '../data/profile';
 import { FadeIn } from '../components/animations/FadeIn';
 import { SectionTitle } from '../components/ui/SectionTitle';
+import { isFilled } from '../utils/content';
 
 export const About = () => {
   return (
@@ -9,7 +10,7 @@ export const About = () => {
       <div className="container mx-auto px-6">
         <SectionTitle 
           title="About Me" 
-          subtitle="Get to know me better, my goals, and my interests outside of coding."
+          subtitle="Get to know me better."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -19,9 +20,9 @@ export const About = () => {
             <div className="glass p-4 rounded-3xl relative z-10 group">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <img 
-                src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&q=80&w=800" 
-                alt="About me" 
-                className="rounded-2xl w-full h-[500px] object-cover grayscale-[50%] hover:grayscale-0 transition-all duration-500 relative z-10"
+                src={profileData.profileImage}
+                alt={profileData.name}
+                className="rounded-2xl w-full h-[500px] object-cover object-top grayscale-[50%] hover:grayscale-0 transition-all duration-500 relative z-10"
               />
             </div>
             
@@ -36,20 +37,23 @@ export const About = () => {
               <div className="glass-dark p-8 rounded-3xl border border-white/5">
                 <h3 className="text-2xl font-bold mb-4 text-white">Biography</h3>
                 <p className="text-gray-400 leading-relaxed">
-                  {profileData.about.bio}
+                  {isFilled(profileData.about.bio) ? profileData.about.bio : profileData.description}
                 </p>
               </div>
             </FadeIn>
 
-            <FadeIn direction="left" delay={0.4}>
-              <div className="glass-dark p-8 rounded-3xl border border-white/5">
-                <h3 className="text-2xl font-bold mb-4 text-white">Goals</h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {profileData.about.goals}
-                </p>
-              </div>
-            </FadeIn>
+            {isFilled(profileData.about.goals) && (
+              <FadeIn direction="left" delay={0.4}>
+                <div className="glass-dark p-8 rounded-3xl border border-white/5">
+                  <h3 className="text-2xl font-bold mb-4 text-white">Goals</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {profileData.about.goals}
+                  </p>
+                </div>
+              </FadeIn>
+            )}
 
+            {profileData.about.interests.length > 0 && (
             <FadeIn direction="left" delay={0.5}>
               <div>
                 <h3 className="text-xl font-bold mb-4 text-white">Interests</h3>
@@ -65,6 +69,7 @@ export const About = () => {
                 </div>
               </div>
             </FadeIn>
+            )}
           </div>
 
         </div>

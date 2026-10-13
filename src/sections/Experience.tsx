@@ -2,6 +2,7 @@ import React from 'react';
 import { experienceData } from '../data/experience';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { FadeIn } from '../components/animations/FadeIn';
+import { ComingSoon } from '../components/ui/ComingSoon';
 
 export const Experience = () => {
   return (
@@ -12,6 +13,7 @@ export const Experience = () => {
           subtitle="My professional journey and the companies I've collaborated with."
         />
 
+        {experienceData.length === 0 && <ComingSoon message="Work experience coming soon." />}
         <div className="relative border-l-2 border-primary/30 ml-4 md:ml-0 md:border-l-0">
           {/* Central Line for Desktop */}
           <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/50 via-secondary/50 to-transparent"></div>
