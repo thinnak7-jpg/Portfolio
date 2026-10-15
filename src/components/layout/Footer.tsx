@@ -19,8 +19,9 @@ export const Footer = () => {
           
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="text-3xl font-bold text-gradient mb-4 inline-block">
-              Portfolio.
+            <Link to="/" className="flex items-center gap-3 mb-4 w-fit">
+              <img src="/avatar.png" alt="" width={48} height={48} className="w-12 h-12 rounded-full ring-2 ring-primary/60 bg-white object-cover" />
+              <span className="text-3xl font-bold text-gradient">{profileData.name.split(' ')[0]}.</span>
             </Link>
             <p className="text-gray-400 max-w-sm mb-6">
               {profileData.description}

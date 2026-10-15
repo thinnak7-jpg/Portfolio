@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { cn } from '../../utils/cn';
+import { profileData } from '../../data/profile';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -35,8 +36,15 @@ export const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold text-gradient z-50">
-          Portfolio.
+        <Link to="/" className="flex items-center gap-3 z-50" aria-label={`${profileData.name} — Home`}>
+          <img
+            src="/avatar.png"
+            alt=""
+            width={40}
+            height={40}
+            className="w-10 h-10 rounded-full ring-2 ring-primary/60 bg-white object-cover"
+          />
+          <span className="text-xl font-bold text-gradient">{profileData.name.split(' ')[0]}.</span>
         </Link>
 
         {/* Desktop Nav */}
