@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { cn } from '../../utils/cn';
-import { profileData } from '../../data/profile';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -35,17 +34,7 @@ export const Navbar = () => {
         isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 z-50" aria-label={`${profileData.name} — Home`}>
-          <img
-            src="/avatar.png"
-            alt=""
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full ring-2 ring-primary/60 bg-white object-cover"
-          />
-          <span className="text-xl font-bold text-gradient">{profileData.name.split(' ')[0]}.</span>
-        </Link>
+      <div className="container mx-auto px-6 flex items-center justify-end">
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
