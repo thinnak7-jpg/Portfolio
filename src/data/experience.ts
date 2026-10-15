@@ -14,9 +14,9 @@ export type Experience = {
 export const experienceData: Experience[] = [
   {
     id: "1",
-    company: "Triple T Broadband (3BB)",
+    company: "Triple T Broadband (3BB) — Nakhon Si Thammarat",
     position: "Intern",
-    duration: "During vocational studies (ปวช.)",
+    duration: "Internship during ปวช.",
     responsibilities: [
       "Looked after network equipment and tools in the data center as assigned by the senior engineering team",
       "Checked and verified equipment and parcels shipped from the upstream site",
