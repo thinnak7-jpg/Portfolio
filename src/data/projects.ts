@@ -14,10 +14,10 @@ export type Project = {
 export const projectsData: Project[] = ([
   {
     id: "1",
-    title: "CDG Hackathon 2025 — 1st Runner-up",
-    description: "Built a solution with my team at CDG Hackathon 2025 x 3 Phra Chom Klao (CDG House, Bangkok) and won 1st Runner-up.",
+    title: "AI City Issue Management Platform",
+    description: "A platform where citizens report city problems and AI helps triage and resolve them before handing cases to the city administration — similar in spirit to Traffy Fondue. Won 1st Runner-up at CDG Hackathon 2025 x 3 Phra Chom Klao (CDG House, Bangkok).",
     image: "/certificates/9.webp",
-    technologies: ["PHP", "MySQL", "API"],
+    technologies: ["AI", "PHP", "MySQL", "API"],
     category: "Hackathon",
   },
   {

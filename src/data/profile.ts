@@ -11,7 +11,7 @@ export const profileData = {
     email: "mailto:Noogpee789@gmail.com",
   },
   about: {
-    bio: "I'm an Electronic and Telecommunication Engineering (ENET C) student who enjoys making hardware and software work together. I started at Nakhon Si Thammarat Technical College, where I competed in device-control programming and went from college gold to a national silver medal. I've also built assistive devices for physical therapy, from a leg muscle rehabilitation device to a breathing trainer made with a nursing college. More recently my team won 1st Runner-up at CDG Hackathon 2025.",
+    bio: "I'm an Electronic and Telecommunication Engineering (ENET C) student at KMUTNB who enjoys making hardware and software work together. I started at Nakhon Si Thammarat Technical College, where I competed in device-control programming and went from college gold to a national silver medal. I've also built assistive devices for physical therapy, from a leg muscle rehabilitation device to a breathing trainer made with a nursing college. More recently my team won 1st Runner-up at CDG Hackathon 2025 with an AI-assisted platform for managing city issues.",
     goals: "[YOUR GOALS GO HERE]",
     interests: [] as string[], // e.g. ["Embedded Systems", "IoT", "Robotics"] — hidden while empty
   },

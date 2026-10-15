@@ -40,10 +40,10 @@ export type Education = {
 export const educationData: Education[] = [
   {
     id: "1",
-    school: "[YOUR UNIVERSITY]",
+    school: "King Mongkut's University of Technology North Bangkok (KMUTNB)",
     degree: "Electronic and Telecommunication Engineering (ENET C)",
-    duration: "[START YEAR - PRESENT]",
-    description: "[DESCRIPTION OF YOUR STUDIES]",
+    duration: "Present",
+    description: "Currently studying Electronic and Telecommunication Engineering, building on my vocational background in electronics and device-control programming. Won 1st Runner-up at CDG Hackathon 2025 with an AI-assisted city issue management platform.",
   },
   {
     id: "2",
@@ -66,7 +66,7 @@ export const achievementsData: Achievement[] = [
   {
     id: "1",
     title: "CDG Hackathon 2025 — 1st Runner-up",
-    description: "CDG Hackathon 2025 x 3 Phra Chom Klao, CDG House, Bangkok.",
+    description: "AI-assisted city issue management platform, CDG Hackathon 2025 x 3 Phra Chom Klao, CDG House, Bangkok.",
     date: "Aug 2025",
     category: "Hackathon",
   },
