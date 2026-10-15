@@ -4,7 +4,7 @@ export const profileData = {
   role: "Student | ENET C", // e.g., "Frontend Developer & UI/UX Designer"
   description: "A passionate Electronic and Telecommunication Engineering (ENET C) student eager to learn and build amazing things.", // e.g., "I build pixel-perfect, engaging, and accessible digital experiences."
   profileImage: "/profile.webp",
-  resumeUrl: "/[YOUR_RESUME.pdf]",
+  resumeUrl: "", // e.g. "/resume.pdf" (put the file in public/) — Resume section and button stay hidden while empty
   socials: {
     github: "https://github.com/thinnak7-jpg",
     facebook: "https://www.facebook.com/ThinnakornRattana?locale=th_TH",
