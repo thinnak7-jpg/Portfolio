@@ -14,14 +14,15 @@ export type Experience = {
 export const experienceData: Experience[] = [
   {
     id: "1",
-    company: "[COMPANY NAME]",
-    position: "[YOUR POSITION]",
-    duration: "[START DATE - END DATE]",
+    company: "Triple T Broadband (3BB)",
+    position: "Intern",
+    duration: "During vocational studies (ปวช.)",
     responsibilities: [
-      "[RESPONSIBILITY 1]",
-      "[RESPONSIBILITY 2]",
+      "Looked after network equipment and tools in the data center as assigned by the senior engineering team",
+      "Checked and verified equipment and parcels shipped from the upstream site",
+      "Worked hands-on around server racks, network switches and fiber-optic distribution equipment",
     ],
-    technologies: ["Tech 1", "Tech 2"],
+    technologies: ["Network Equipment", "Fiber Optics", "Data Center"],
   },
 ].filter((e) => isFilled(e.company) && isFilled(e.position));
 
@@ -47,7 +48,7 @@ export const educationData: Education[] = [
   {
     id: "2",
     school: "Nakhon Si Thammarat Technical College",
-    degree: "Vocational Certificate (ปวช.)",
+    degree: "Vocational Certificate (ปวช.) — Electronics",
     duration: "From 2020",
     description: "Competed in device-control programming from college to national level — gold medals at the college, provincial and Southern regional rounds, and a silver medal (4th runner-up) at the national Or.Wor.Tor. skills competition in 2022. Also built award-winning assistive devices for physical therapy.",
   },
